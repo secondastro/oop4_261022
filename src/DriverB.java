@@ -12,12 +12,4 @@ public class DriverB<D extends Car> extends Driver {
         System.out.println(getName() + " начал движение на " + car.getBrand());
     }
 
-    public void stop() {
-        System.out.println(getName() + " остановился");
-    }
-
-    public void refill() {
-        System.out.println(getName() + " заправился");
-    }
-
 }

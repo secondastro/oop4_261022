@@ -13,13 +13,13 @@ public class DriverD <D extends Truck > extends  Driver{
         System.out.println(getName() + " начал движение на " + truck.getBrand());
     }
 
-    public void stop() {
-        System.out.println(getName() + " остановился");
-    }
-
-    public void refill() {
-        System.out.println(getName() + " заправился");
-    }
+//    public void stop() {
+//        System.out.println(getName() + " остановился");
+//    }
+//
+//    public void refill() {
+//        System.out.println(getName() + " заправился");
+//    }
 
 //    public String getName() {
 //        return name;

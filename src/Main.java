@@ -79,6 +79,11 @@ public class Main {
         max.start(fiat);
         DriverD vasilich = new DriverD("Василич", 1985);
         vasilich.start(belaz);
+        max.stop();
+
+        System.out.println(vasilich.getLicenseType());
+
+
 
 
 

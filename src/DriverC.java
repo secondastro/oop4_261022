@@ -14,13 +14,7 @@ public class DriverC<D extends Bus>  extends  Driver {
         System.out.println(getName() + " начал движение на " + bus.getBrand());
     }
 
-    public void stop() {
-        System.out.println(getName() + " остановился");
-    }
 
-    public void refill() {
-        System.out.println(getName() + " заправился");
-    }
 //
 //    public String getName() {
 //        return name;
