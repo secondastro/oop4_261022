@@ -10,9 +10,9 @@ public class DriverC<D extends Bus>  extends  Driver {
     }
 
 
-    public void start(D bus) {
-        System.out.println(getName() + " начал движение на " + bus.getBrand());
-    }
+//    public void start(D bus) {
+//        System.out.println(getName() + " начал движение на " + bus.getBrand());
+//    }
 
 
 //

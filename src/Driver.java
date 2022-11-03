@@ -18,6 +18,10 @@ public abstract class Driver<C extends Transport> {
             this.licenseType = "Категория D";
         }
     }
+
+    public void start(C car) {
+        System.out.println(getName() + " начал движение на " + car.getBrand());
+    }
     public void stop() {
         System.out.println(getName() + " остановился");
     }

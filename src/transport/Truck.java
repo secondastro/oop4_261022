@@ -1,6 +1,9 @@
 package transport;
 
 public class Truck extends Transport implements Competing {
+
+    public enum LoadCapacity{N1,N2, N3}
+
     public Truck(String brand, String model, double engineVolume, Circles circles) {
         super(brand, model, engineVolume, circles);
     }

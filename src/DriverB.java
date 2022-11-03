@@ -8,8 +8,8 @@ public class DriverB<D extends Car> extends Driver {
 
     }
 
-    public void start(D car) {
-        System.out.println(getName() + " начал движение на " + car.getBrand());
-    }
+//    public void start(D car) {
+//        System.out.println(getName() + " начал движение на " + car.getBrand());
+//    }
 
 }

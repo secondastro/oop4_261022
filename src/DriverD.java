@@ -9,9 +9,9 @@ public class DriverD <D extends Truck > extends  Driver{
 
     }
 
-    public void start(D truck) {
-        System.out.println(getName() + " начал движение на " + truck.getBrand());
-    }
+//    public void start(D truck) {
+//        System.out.println(getName() + " начал движение на " + truck.getBrand());
+//    }
 
 //    public void stop() {
 //        System.out.println(getName() + " остановился");

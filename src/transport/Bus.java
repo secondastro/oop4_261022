@@ -1,6 +1,8 @@
 package transport;
 
 public class Bus extends Transport implements Competing {
+
+    public enum PassCapacity{VerySmall,Small,Middle, Big, Huge}
     public Bus(String brand, String model, double engineVolume, Circles circles) {
         super(brand, model, engineVolume, circles);
     }

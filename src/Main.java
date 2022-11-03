@@ -73,12 +73,12 @@ public class Main {
         System.out.println(kamaz.maxSpeed());
         kamaz.finish();
 
-        DriverB aleks = new DriverB<>("Александр Варачев", 1999);
-        aleks.start(bmw);
-        DriverC max = new DriverC("Макс Трайбер", 2010);
-        max.start(fiat);
-        DriverD vasilich = new DriverD("Василич", 1985);
-        vasilich.start(belaz);
+        DriverB <Car> aleks = new DriverB<>("Александр Варачев", 1999);
+        aleks.start(fiat);
+        DriverC <Bus> max = new DriverC<>("Макс Трайбер", 2010);
+        max.start(bmw);
+        DriverD <Truck> vasilich = new DriverD<>("Василич", 1985);
+        vasilich.start(hyundai);
         max.stop();
 
         System.out.println(vasilich.getLicenseType());
