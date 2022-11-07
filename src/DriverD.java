@@ -1,7 +1,7 @@
 import transport.Competing;
 import transport.Truck;
 
-public class DriverD <D extends Truck > extends  Driver{
+public class DriverD extends  Driver<Truck>{
 
 
     public DriverD(String name, int yearOfGettingLicense) {

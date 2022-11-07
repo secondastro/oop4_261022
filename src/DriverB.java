@@ -1,6 +1,6 @@
 import transport.Car;
 
-public class DriverB<D extends Car> extends Driver {
+public class DriverB extends Driver<Car> {
 
 
     public DriverB(String name, int yearOfGettingLicense) {
