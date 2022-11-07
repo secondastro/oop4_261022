@@ -1,45 +1,49 @@
 package transport;
 
 public class Car extends Transport implements Competing {
-    public enum BodyType {Sedan ("Седан"),
-        Hatcback("Хэтчбэк"),
-        Coupe("Купе"),
-        Universal("Универсал"),
-        Outlander("Внедорожник"),
-        Crossover("Кроссовер"),
-        Pickup("Пикап"),
-        Furgon("Фургон"),
-        Minivan("Минивен");
-
-        public static BodyType determineType(String bodyType) {
-            for (BodyType value : values()) {
-                if (value.getBodyType().equals(bodyType)) {
-                    return value;
-                }
-            }
-            return null;
-        }
-        private String bodyType;
-
-        BodyType(String bodyType) {
-         this.bodyType = bodyType;
+    public enum BodyType {
+        SEDAN("Седан"),
+        HATCHBACK("Хэтчбэк"),
+        COUPE("Купе"),
+        UNIVERSAL("Универсал"),
+        OUTLANDER("Внедорожник"),
+        CROSSOVER("Кроссовер"),
+        PICKUP("Пикап"),
+        FURGON("Фургон"),
+        MINIVAN("Минивен");
+        private final String name;
+        BodyType(String name) {
+            this.name = name;
         }
 
-        public String getBodyType() {
-            return bodyType;
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return "тип кузова: " +
+                    this.name;
         }
     }
-
-
-
     public static int counter = 0;
+    private final BodyType bodyType;
 
-
-    public Car(String brand, String model, double engineVolume, Circles circles) {
+    public Car(String brand, String model, double engineVolume, Circles circles, BodyType bodyType) {
         super(brand, model, engineVolume, circles);
+        this.bodyType = bodyType;
         counter++;
     }
 
+
+    @Override
+    public void printType() {
+        if (this.bodyType !=null)
+            System.out.println(this.bodyType);
+        else {
+            System.out.println("Информации не достаточно");
+        }
+    }
 
     @Override
     public void start() {
@@ -60,7 +64,7 @@ public class Car extends Transport implements Competing {
     @Override
     public String maxSpeed() {
         int max = Integer.MIN_VALUE;
-        int [] arr = getCircles().getSpeed();
+        int[] arr = getCircles().getSpeed();
         for (int anInt : arr) {
             if (anInt > max) {
                 max = anInt;

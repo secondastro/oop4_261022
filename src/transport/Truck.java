@@ -2,10 +2,51 @@ package transport;
 
 public class Truck extends Transport implements Competing {
 
-    public enum LoadCapacity{N1,N2, N3}
+    public enum LoadCapacity{N1(null, 3.5f),
+        N2(3.5f, 12f),
+        N3(12f, null);
+        private final Float capacityMin;
+        private final Float capacityMax;
 
-    public Truck(String brand, String model, double engineVolume, Circles circles) {
+        public Float getCapacityMin() {
+            return capacityMin;
+        }
+
+        public float getCapacityMax() {
+            return capacityMax;
+        }
+
+        LoadCapacity(Float capacityMin, Float capacityMax) {
+            this.capacityMin = capacityMin;
+            this.capacityMax = capacityMax;
+        }
+
+        @Override
+        public String toString() {
+            String capacityPassMin = capacityMin != null
+                    ? "от " + capacityMin
+                    : "";
+            String capacityPassMax = capacityMax !=null
+                    ? " до " + capacityMax : "";
+            return "грузоподъемность: " + capacityPassMin + capacityPassMax + " тонн";
+        }
+    }
+
+    private final LoadCapacity loadCapacity;
+
+    public Truck(String brand, String model, double engineVolume, Circles circles, LoadCapacity loadCapacity) {
         super(brand, model, engineVolume, circles);
+        this.loadCapacity = loadCapacity;
+    }
+
+    @Override
+    public void printType() {
+        if (this.loadCapacity != null) {
+            System.out.println(this.loadCapacity);
+        } else {
+            System.out.println("Информации не достаточно");
+        }
+
     }
 
     @Override

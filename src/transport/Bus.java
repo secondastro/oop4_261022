@@ -2,9 +2,47 @@ package transport;
 
 public class Bus extends Transport implements Competing {
 
-    public enum PassCapacity{VerySmall,Small,Middle, Big, Huge}
-    public Bus(String brand, String model, double engineVolume, Circles circles) {
+    public enum PassCapacity{XS(0,10),
+        S(10,25),
+        M(40,50),
+        L(60,80),
+        XL(100,120);
+    private final int capacityMin;
+    private final int capacityMax;
+
+        PassCapacity(int capacityMin, int capacityMax) {
+            this.capacityMin = capacityMin;
+            this.capacityMax = capacityMax;
+        }
+
+        public int getCapacityMin() {
+            return capacityMin;
+        }
+
+        public int getCapacityMax() {
+            return capacityMax;
+        }
+
+        @Override
+        public String toString() {
+            return "вместимость: от " + getCapacityMin() + " до " + getCapacityMax() + " человек";
+        }
+    }
+
+    private final PassCapacity passCapacity;
+    public Bus(String brand, String model, double engineVolume, Circles circles, PassCapacity passCapacity) {
         super(brand, model, engineVolume, circles);
+        this.passCapacity = passCapacity;
+    }
+
+    @Override
+    public void printType() {
+        if (this.passCapacity != null) {
+            System.out.println(this.passCapacity);
+        }else {
+            System.out.println("Информации недостаточно");
+        }
+
     }
 
     @Override

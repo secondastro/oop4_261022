@@ -6,7 +6,6 @@ public abstract class Transport {
     private final String brand;
     private final String model;
     private final double engineVolume;
-
     private Circles circles;
 
     public static class Circles {
@@ -44,7 +43,7 @@ public abstract class Transport {
         }
         this.circles = circles;
     }
-
+    public abstract void printType();
     public abstract void start();
 
     public abstract void finish();
