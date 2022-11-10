@@ -1,7 +1,9 @@
 import transport.*;
 
+import static transport.Transport.transportTest;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DriverLicenseException {
         Car audi = new Car("Audi",
                 "A8 50 L TDI quattro",
                 3.0,
@@ -94,10 +96,33 @@ public class Main {
         mercedes.printType();
         belaz.printType();
 
-
-
-
-
+        System.out.println();
+        vasilich.setLicenseType("gfgsdfhsdfg");
+        checkLicense(aleks,max,vasilich);
+        System.out.println();
+        transportTest(audi, bmw, kia, mercedes, belaz, kamaz); //провожу диагностику данных транспортных средств, записываю в массив
+        checkTest(audi,bmw,kia,hyundai,mercedes,fiat,paz,zil,kamaz,belaz,man,scania); //сверяю все объекты с массивом прошедших диагностику ТС
 
     }
+
+    public static void checkLicense(Driver... drivers) {
+        for (Driver driver : drivers) {
+            try {
+                driver.checkLicense();
+            } catch (DriverLicenseException e) {
+                System.out.println(driver.getName() + ": " + e.getMessage());
+            }
+        }
+    }
+
+    public static void checkTest(Transport... transports) {
+        for (Transport transport : transports) {
+            try{
+                transport.checkTest();
+            } catch (WrongTestDriveException e) {
+                System.out.println(e.getMessage());;
+            }
+        }
+    }
+
 }

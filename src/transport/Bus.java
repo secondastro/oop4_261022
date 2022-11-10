@@ -56,6 +56,11 @@ public class Bus extends Transport implements Competing {
     }
 
     @Override
+    public void checkTest() throws WrongTestDriveException {
+        throw new WrongTestDriveException("Автобусу " + getBrand() + " " + getModel() + " диагностика не требуется");
+    }
+
+    @Override
     public String pitStop() {
         return getBrand() + " " + getModel() + " заехал на пит-стоп";
     }

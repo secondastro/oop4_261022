@@ -1,5 +1,7 @@
 import transport.Transport;
 
+import java.util.Objects;
+
 public abstract class Driver<C extends Transport> {
     private String name;
 
@@ -12,7 +14,7 @@ public abstract class Driver<C extends Transport> {
         this.licenseAge = ValidationUtils.validationAge(yearOfGettingLicense);
         if (this.getClass() == DriverB.class) {
             this.licenseType = "Категория B";
-        } else if (this.getClass()==DriverC.class) {
+        } else if (this.getClass() == DriverC.class) {
             this.licenseType = "Категория C";
         } else if (this.getClass() == DriverD.class) {
             this.licenseType = "Категория D";
@@ -22,6 +24,7 @@ public abstract class Driver<C extends Transport> {
     public void start(C car) {
         System.out.println(getName() + " начал движение на " + car.getBrand());
     }
+
     public void stop() {
         System.out.println(getName() + " остановился");
     }
@@ -54,5 +57,28 @@ public abstract class Driver<C extends Transport> {
 
     public String getLicenseType() {
         return licenseType;
+    }
+
+    public void setLicenseType(String licenseType) {
+        this.licenseType = licenseType;
+    }
+
+    public void checkLicense() throws DriverLicenseException {
+        if (getClass() == DriverB.class) {
+            if (!Objects.equals(getLicenseType(), "Категория B")) {
+                throw new DriverLicenseException("Необходимо указать тип прав!");
+            }
+        }
+        if (getClass() == DriverC.class) {
+            if (!Objects.equals(getLicenseType(), "Категория C")) {
+                throw new DriverLicenseException("Необходимо указать тип прав!");
+            }
+        }
+        if (getClass() == DriverD.class) {
+            if (!Objects.equals(getLicenseType(), "Категория D")) {
+                throw new DriverLicenseException("Необходимо указать тип прав!");
+            }
+        }
+
     }
 }

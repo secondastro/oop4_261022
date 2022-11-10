@@ -12,6 +12,7 @@ public class Car extends Transport implements Competing {
         FURGON("Фургон"),
         MINIVAN("Минивен");
         private final String name;
+
         BodyType(String name) {
             this.name = name;
         }
@@ -26,6 +27,7 @@ public class Car extends Transport implements Competing {
                     this.name;
         }
     }
+
     public static int counter = 0;
     private final BodyType bodyType;
 
@@ -38,7 +40,7 @@ public class Car extends Transport implements Competing {
 
     @Override
     public void printType() {
-        if (this.bodyType !=null)
+        if (this.bodyType != null)
             System.out.println(this.bodyType);
         else {
             System.out.println("Информации не достаточно");
@@ -53,6 +55,19 @@ public class Car extends Transport implements Competing {
     @Override
     public void finish() {
         System.out.println("Автомобиль " + getBrand() + " " + getModel() + " закончил движение");
+    }
+
+    @Override
+    public void checkTest() throws WrongTestDriveException {
+        s = null;
+        for (Transport testedTransport : testedTransports) {
+            if (this == testedTransport) {
+                System.out.println(s = this.getBrand() + " " + this.getModel() + " прошел диагностику");
+            }
+        }
+        if (s == null) {
+            throw new WrongTestDriveException("!!!Автомобиль " + getBrand() + " " + getModel() + " не прошел диагностику!!!");
+        }
     }
 
 

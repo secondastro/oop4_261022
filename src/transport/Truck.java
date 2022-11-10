@@ -2,7 +2,8 @@ package transport;
 
 public class Truck extends Transport implements Competing {
 
-    public enum LoadCapacity{N1(null, 3.5f),
+    public enum LoadCapacity {
+        N1(null, 3.5f),
         N2(3.5f, 12f),
         N3(12f, null);
         private final Float capacityMin;
@@ -26,7 +27,7 @@ public class Truck extends Transport implements Competing {
             String capacityPassMin = capacityMin != null
                     ? "от " + capacityMin
                     : "";
-            String capacityPassMax = capacityMax !=null
+            String capacityPassMax = capacityMax != null
                     ? " до " + capacityMax : "";
             return "грузоподъемность: " + capacityPassMin + capacityPassMax + " тонн";
         }
@@ -59,15 +60,29 @@ public class Truck extends Transport implements Competing {
         System.out.println("Грузовой автомобиль " + getBrand() + " " + getModel() + " закончил движение");
     }
 
+    @Override
+    public void checkTest() throws WrongTestDriveException {
+        s = null;
+        for (Transport testedTransport : testedTransports) {
+            if (this == testedTransport) {
+                System.out.println(s = this.getBrand() + " " + this.getModel() + " прошел диагностику");
+            }
+        }
+        if (s == null) {
+            throw new WrongTestDriveException("!!!Грузовик " + getBrand() + " " + getModel() + " не прошел диагностику!!!");
+        }
+    }
+
 
     @Override
     public String pitStop() {
         return getBrand() + " " + getModel() + " заехал на пит-стоп";
     }
+
     @Override
     public String maxSpeed() {
         int max = Integer.MIN_VALUE;
-        int [] arr = getCircles().getSpeed();
+        int[] arr = getCircles().getSpeed();
         for (int anInt : arr) {
             if (anInt > max) {
                 max = anInt;

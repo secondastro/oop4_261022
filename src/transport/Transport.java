@@ -1,5 +1,6 @@
 package transport;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public abstract class Transport {
@@ -7,6 +8,8 @@ public abstract class Transport {
     private final String model;
     private final double engineVolume;
     private Circles circles;
+
+    public static Transport[] testedTransports = new Transport[0];
 
     public static class Circles {
         private double[] times;
@@ -33,6 +36,10 @@ public abstract class Transport {
             this.speed = speed;
         }
     }
+
+    private static int counter = 0;
+    public String s =null;
+
     public Transport(String brand, String model, double engineVolume, Circles circles) {
         this.brand = Objects.requireNonNullElse(brand, "default");
         this.model = Objects.requireNonNullElse(model, "default");
@@ -43,7 +50,9 @@ public abstract class Transport {
         }
         this.circles = circles;
     }
+
     public abstract void printType();
+
     public abstract void start();
 
     public abstract void finish();
@@ -67,6 +76,21 @@ public abstract class Transport {
     public void setCircles(Circles circles) {
         this.circles = circles;
     }
+
+    public static void transportTest(Transport... transports) {
+        for (int i = 0; i < transports.length; i++) {
+            if (counter == 0) {
+                testedTransports = new Transport[1];
+                testedTransports[0] = transports[i];
+                counter++;
+            } else {
+                counter++;
+                testedTransports = Arrays.copyOf(testedTransports, counter);
+                testedTransports[counter - 1] = transports[i];
+            }
+        }
+    }
+    public abstract void checkTest() throws WrongTestDriveException;
 
 
     @Override
