@@ -1,7 +1,12 @@
 package transport;
 
+import personal.DriverD;
+import utils.WrongTestDriveException;
+
+
 public class Truck extends Transport implements Competing {
 
+    private DriverD driver;
     public enum LoadCapacity {
         N1(null, 3.5f),
         N2(3.5f, 12f),
@@ -35,9 +40,17 @@ public class Truck extends Transport implements Competing {
 
     private final LoadCapacity loadCapacity;
 
-    public Truck(String brand, String model, double engineVolume, Circles circles, LoadCapacity loadCapacity) {
-        super(brand, model, engineVolume, circles);
+    public Truck(String brand, String model, double engineVolume, double time, int speed, LoadCapacity loadCapacity) {
+        super(brand, model, engineVolume, time, speed);
         this.loadCapacity = loadCapacity;
+    }
+
+    public DriverD getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverD driver) {
+        this.driver = driver;
     }
 
     @Override
@@ -48,6 +61,12 @@ public class Truck extends Transport implements Competing {
             System.out.println("Информации не достаточно");
         }
 
+    }
+
+    @Override
+    public void printPersonalData() {
+        System.out.println("Грузовик " + getBrand() + " " + getModel() +
+                ", Водитель " + getDriver().getName() + ". Спонсоры " + getSponsors()  + ", механики " + getMechanics().toString());
     }
 
     @Override
@@ -81,28 +100,15 @@ public class Truck extends Transport implements Competing {
 
     @Override
     public String maxSpeed() {
-        int max = Integer.MIN_VALUE;
-        int[] arr = getCircles().getSpeed();
-        for (int anInt : arr) {
-            if (anInt > max) {
-                max = anInt;
-            }
-        }
-        return "Максимальная скорость грузовика " + getBrand() + " " + getModel() + ": " + max + " км/ч";
+
+        return "Максимальная скорость грузовика " + getBrand() + " " + getModel() + ": " +  getSpeed() + " км/ч";
 
 
     }
 
     public String BestTime() {
-        double[] arr = getCircles().getTimes();
-        double min = Integer.MAX_VALUE;
-        for (int i = 0; i < arr.length; i++) {
-            if (min > arr[i]) {
-                min = arr[i];
-            }
-        }
 
-        return "Грузовик " + getBrand() + " " + getModel() + ". Лучшее время круга: " + min + " секунд";
+        return "Грузовик " + getBrand() + " " + getModel() + ". Лучшее время круга: " + getTime() + " секунд";
     }
 }
 

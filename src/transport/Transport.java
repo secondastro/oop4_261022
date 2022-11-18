@@ -1,46 +1,37 @@
 package transport;
 
+import personal.Mechanic;
+import personal.Sponsor;
+import utils.WrongTestDriveException;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Transport {
+
+    public static int counter = 0;
     private final String brand;
     private final String model;
     private final double engineVolume;
-    private Circles circles;
+    private final double time;
+    private final int speed;
+
+    private final List<Sponsor> sponsors = new ArrayList<>();
+
+    private final List<Mechanic> mechanics = new ArrayList<>();
+
+    private int money;
 
     public static Transport[] testedTransports = new Transport[0];
 
-    public static class Circles {
-        private double[] times;
-        private int[] speed;
 
-        public Circles(double[] times, int[] speed) {
-            this.times = times;
-            this.speed = speed;
-        }
-
-        public double[] getTimes() {
-            return times;
-        }
-
-        public void setTimes(double[] times) {
-            this.times = times;
-        }
-
-        public int[] getSpeed() {
-            return speed;
-        }
-
-        public void setSpeed(int[] speed) {
-            this.speed = speed;
-        }
-    }
-
-    private static int counter = 0;
     public String s =null;
+    public static List<Transport> allTransports = new ArrayList<>(15);
 
-    public Transport(String brand, String model, double engineVolume, Circles circles) {
+
+    public Transport(String brand, String model, double engineVolume,double time, int speed) {
         this.brand = Objects.requireNonNullElse(brand, "default");
         this.model = Objects.requireNonNullElse(model, "default");
         if (engineVolume == 0) {
@@ -48,7 +39,10 @@ public abstract class Transport {
         } else {
             this.engineVolume = engineVolume;
         }
-        this.circles = circles;
+        this.time = time;
+        this.speed = speed;
+        counter++;
+        allTransports.add(this);
     }
 
     public abstract void printType();
@@ -69,13 +63,39 @@ public abstract class Transport {
         return engineVolume;
     }
 
-    public Circles getCircles() {
-        return circles;
+    public double getTime() {
+        return time;
     }
 
-    public void setCircles(Circles circles) {
-        this.circles = circles;
+    public int getSpeed() {
+        return speed;
     }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public List getMechanics() {
+        return this.mechanics;
+    }
+
+    public void setMechanics(Mechanic mechanic) {
+        this.mechanics.add(mechanic);
+    }
+
+    public List getSponsors() {
+        return this.sponsors;
+    }
+
+    public void setSponsors (Sponsor sponsor) {
+        this.sponsors.add(sponsor) ;
+    }
+
+    public abstract void printPersonalData();
 
     public static void transportTest(Transport... transports) {
         for (int i = 0; i < transports.length; i++) {
@@ -101,6 +121,5 @@ public abstract class Transport {
                 ", engineVolume=" + engineVolume +
                 '}';
     }
-
 
 }

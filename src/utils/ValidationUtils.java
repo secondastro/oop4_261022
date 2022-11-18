@@ -1,9 +1,10 @@
+package utils;
 
 import java.time.LocalDate;
 
 public class ValidationUtils {
     public static String validationString(String value, String defaultValue) {
-        return value==null||value.isBlank()||value.isEmpty()? defaultValue : value;
+        return value == null || value.isBlank() || value.isEmpty() ? defaultValue : value;
     }
 
     public static int validationAge(int value) {
@@ -14,18 +15,16 @@ public class ValidationUtils {
             } else {
                 age = LocalDate.now().getYear() - Math.abs(value);
             }
-        } else if (value>LocalDate.now().getYear() || value == 0) {
+        } else if (value > LocalDate.now().getYear() || value == 0) {
             throw new RuntimeException("Год не корректный");
         }
         return age;
     }
 
-    public static int validationInt(int value){
-        if (value==0) {
-            throw new RuntimeException("Ошибка");
-        } else if (value < 0) {
-            value = Math.abs(value);
-        }
-        return value;
+    public static int validationInt(int value) {
+        if (value <= 0) throw new IllegalArgumentException("Ошибка, введённое число меньше или равно нулю");
+        else
+            return value;
+
     }
 }

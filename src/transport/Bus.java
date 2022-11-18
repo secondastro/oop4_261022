@@ -1,6 +1,12 @@
 package transport;
 
+import personal.DriverC;
+import utils.WrongTestDriveException;
+
+
 public class Bus extends Transport implements Competing {
+
+    private DriverC driver;
 
     public enum PassCapacity{XS(0,10),
         S(10,25),
@@ -23,6 +29,7 @@ public class Bus extends Transport implements Competing {
             return capacityMax;
         }
 
+
         @Override
         public String toString() {
             return "вместимость: от " + getCapacityMin() + " до " + getCapacityMax() + " человек";
@@ -30,9 +37,17 @@ public class Bus extends Transport implements Competing {
     }
 
     private final PassCapacity passCapacity;
-    public Bus(String brand, String model, double engineVolume, Circles circles, PassCapacity passCapacity) {
-        super(brand, model, engineVolume, circles);
+    public Bus(String brand, String model, double engineVolume, double time, int speed, PassCapacity passCapacity) {
+        super(brand, model, engineVolume, time, speed);
         this.passCapacity = passCapacity;
+    }
+
+    public DriverC getDriver() {
+        return driver;
+    }
+
+    public void setDriver(DriverC driver) {
+        this.driver = driver;
     }
 
     @Override
@@ -44,7 +59,11 @@ public class Bus extends Transport implements Competing {
         }
 
     }
-
+    @Override
+    public void printPersonalData() {
+        System.out.println("Автобус " + getBrand() + " " + getModel() +
+                ", Водитель " + getDriver().getName() + ". Спонсоры " + getSponsors()  + ", механики " + getMechanics().toString());
+    }
     @Override
     public void start() {
         System.out.println("Автобус " + getBrand() + " " + getModel() + " начал движение");
@@ -67,27 +86,12 @@ public class Bus extends Transport implements Competing {
 
     @Override
     public String maxSpeed() {
-        int max = Integer.MIN_VALUE;
-        int [] arr = getCircles().getSpeed();
-        for (int anInt : arr) {
-            if (anInt > max) {
-                max = anInt;
-            }
-        }
-        return "Максимальная скорость автобуса " + getBrand() + " " + getModel() + ": " + max + " км/ч";
+        return "Максимальная скорость автобуса " + getBrand() + " " + getModel() + ": " + getSpeed() + " км/ч";
 
 
     }
 
     public String BestTime() {
-        double[] arr = getCircles().getTimes();
-        double min = Integer.MAX_VALUE;
-        for (int i = 0; i < arr.length; i++) {
-            if (min > arr[i]) {
-                min = arr[i];
-            }
-        }
-
-        return "Автобус " + getBrand() + " " + getModel() + ". Лучшее время круга: " + min + " секунд";
+        return "Автобус " + getBrand() + " " + getModel() + ". Лучшее время круга: " + getTime() + " секунд";
     }
 }

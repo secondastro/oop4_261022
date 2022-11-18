@@ -1,4 +1,5 @@
-import transport.Competing;
+package personal;
+
 import transport.Truck;
 
 public class DriverD extends  Driver<Truck>{

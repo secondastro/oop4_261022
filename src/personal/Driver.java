@@ -1,5 +1,10 @@
-import transport.Transport;
+package personal;
 
+import transport.Transport;
+import utils.DriverLicenseException;
+import utils.ValidationUtils;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Driver<C extends Transport> {
@@ -9,8 +14,10 @@ public abstract class Driver<C extends Transport> {
 
     private String licenseType;
 
+    public static ArrayList<Driver> allDrivers = new ArrayList<>(15);
+
     public Driver(String name, int yearOfGettingLicense) {
-        this.name = ValidationUtils.validationString(name, "default");
+        this.name = ValidationUtils.validationString(name, "Empty");
         this.licenseAge = ValidationUtils.validationAge(yearOfGettingLicense);
         if (this.getClass() == DriverB.class) {
             this.licenseType = "Категория B";
@@ -18,6 +25,11 @@ public abstract class Driver<C extends Transport> {
             this.licenseType = "Категория C";
         } else if (this.getClass() == DriverD.class) {
             this.licenseType = "Категория D";
+        }
+        if (allDrivers.contains(this)) {
+            throw new RuntimeException(getName() + " уже выехал на другом автомобиле");
+        } else {
+            allDrivers.add(this);
         }
     }
 
@@ -63,6 +75,7 @@ public abstract class Driver<C extends Transport> {
         this.licenseType = licenseType;
     }
 
+
     public void checkLicense() throws DriverLicenseException {
         if (getClass() == DriverB.class) {
             if (!Objects.equals(getLicenseType(), "Категория B")) {
@@ -80,5 +93,14 @@ public abstract class Driver<C extends Transport> {
             }
         }
 
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "name='" + name + '\'' +
+                ", licenseAge=" + licenseAge +
+                ", licenseType='" + licenseType + '\'' +
+                '}';
     }
 }

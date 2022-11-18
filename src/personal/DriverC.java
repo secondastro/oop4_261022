@@ -1,6 +1,6 @@
+package personal;
+
 import transport.Bus;
-import transport.Competing;
-import transport.Transport;
 
 public class DriverC extends Driver<Bus> {
 

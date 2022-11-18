@@ -1,4 +1,4 @@
-package transport;
+package utils;
 
 public class WrongTestDriveException extends Exception {
     public WrongTestDriveException() {

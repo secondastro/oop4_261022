@@ -1,6 +1,12 @@
 package transport;
 
+import personal.DriverB;
+import utils.WrongTestDriveException;
+
+
 public class Car extends Transport implements Competing {
+
+    private DriverB driver;
     public enum BodyType {
         SEDAN("Седан"),
         HATCHBACK("Хэтчбэк"),
@@ -17,6 +23,7 @@ public class Car extends Transport implements Competing {
             this.name = name;
         }
 
+
         public String getName() {
             return name;
         }
@@ -28,15 +35,21 @@ public class Car extends Transport implements Competing {
         }
     }
 
-    public static int counter = 0;
     private final BodyType bodyType;
 
-    public Car(String brand, String model, double engineVolume, Circles circles, BodyType bodyType) {
-        super(brand, model, engineVolume, circles);
+    public Car(String brand, String model, double engineVolume, double time, int speed, BodyType bodyType) {
+        super(brand, model, engineVolume, time, speed);
         this.bodyType = bodyType;
-        counter++;
+//        setDriver(driver);
     }
 
+    public void setDriver(DriverB driver) {
+        this.driver = driver;
+    }
+
+    public DriverB getDriver() {
+        return driver;
+    }
 
     @Override
     public void printType() {
@@ -55,6 +68,12 @@ public class Car extends Transport implements Competing {
     @Override
     public void finish() {
         System.out.println("Автомобиль " + getBrand() + " " + getModel() + " закончил движение");
+    }
+
+    @Override
+    public void printPersonalData() {
+        System.out.println("Автомобиль " + getBrand() + " " + getModel() +
+                ", Водитель " + getDriver().getName() + ". Спонсоры " + getSponsors()  + ", механики " + getMechanics().toString());
     }
 
     @Override
@@ -78,28 +97,12 @@ public class Car extends Transport implements Competing {
 
     @Override
     public String maxSpeed() {
-        int max = Integer.MIN_VALUE;
-        int[] arr = getCircles().getSpeed();
-        for (int anInt : arr) {
-            if (anInt > max) {
-                max = anInt;
-            }
-        }
-        return "Максимальная скорость автомобиля " + getBrand() + " " + getModel() + ": " + max + " км/ч";
+        return "Максимальная скорость автомобиля " + getBrand() + " " + getModel() + ": " + getSpeed() + " км/ч";
 
 
     }
 
     public String BestTime() {
-        double[] arr = getCircles().getTimes();
-        double min = Integer.MAX_VALUE;
-        for (int i = 0; i < arr.length; i++) {
-            if (min > arr[i]) {
-                min = arr[i];
-            }
-        }
-
-        return "Автомобиль " + getBrand() + " " + getModel() + ". Лучшее время круга: " + min + " секунд";
+        return "Автомобиль " + getBrand() + " " + getModel() + ". Лучшее время круга: " + getTime() + " секунд";
     }
-
 }
