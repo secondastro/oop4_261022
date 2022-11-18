@@ -1,5 +1,6 @@
 package transport;
 
+import personal.Driver;
 import personal.Mechanic;
 import personal.Sponsor;
 import utils.WrongTestDriveException;
@@ -23,6 +24,7 @@ public abstract class Transport {
     private final List<Mechanic> mechanics = new ArrayList<>();
 
     private int money;
+
 
     public static Transport[] testedTransports = new Transport[0];
 
@@ -95,7 +97,9 @@ public abstract class Transport {
         this.sponsors.add(sponsor) ;
     }
 
-    public abstract void printPersonalData();
+    public void printPersonalData() {
+        System.out.print("Автомобиль " + getBrand() + " " + getModel() + ". Спонсоры " + getSponsors()  + ", механики " + getMechanics().toString());
+    }
 
     public static void transportTest(Transport... transports) {
         for (int i = 0; i < transports.length; i++) {

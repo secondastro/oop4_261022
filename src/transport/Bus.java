@@ -61,8 +61,9 @@ public class Bus extends Transport implements Competing {
     }
     @Override
     public void printPersonalData() {
-        System.out.println("Автобус " + getBrand() + " " + getModel() +
-                ", Водитель " + getDriver().getName() + ". Спонсоры " + getSponsors()  + ", механики " + getMechanics().toString());
+        super.printPersonalData();
+        System.out.println(
+                ", Водитель " + getDriver().getName());
     }
     @Override
     public void start() {
