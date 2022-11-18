@@ -19,21 +19,20 @@ public abstract class Transport {
     private final double time;
     private final int speed;
 
+    private final List<Driver<?>> drivers = new ArrayList<>();
     private final List<Sponsor> sponsors = new ArrayList<>();
 
     private final List<Mechanic> mechanics = new ArrayList<>();
 
     private int money;
 
-
-    public static Transport[] testedTransports = new Transport[0];
-
-
-    public String s =null;
     public static List<Transport> allTransports = new ArrayList<>(15);
+    public static List<Transport> testedTransports = new ArrayList<>();
+
+    public String s = null;
 
 
-    public Transport(String brand, String model, double engineVolume,double time, int speed) {
+    public Transport(String brand, String model, double engineVolume, double time, int speed) {
         this.brand = Objects.requireNonNullElse(brand, "default");
         this.model = Objects.requireNonNullElse(model, "default");
         if (engineVolume == 0) {
@@ -43,7 +42,6 @@ public abstract class Transport {
         }
         this.time = time;
         this.speed = speed;
-        counter++;
         allTransports.add(this);
     }
 
@@ -93,37 +91,26 @@ public abstract class Transport {
         return this.sponsors;
     }
 
-    public void setSponsors (Sponsor sponsor) {
-        this.sponsors.add(sponsor) ;
+    public void setSponsors(Sponsor sponsor) {
+        this.sponsors.add(sponsor);
     }
 
     public void printPersonalData() {
-        System.out.print("Автомобиль " + getBrand() + " " + getModel() + ". Спонсоры " + getSponsors()  + ", механики " + getMechanics().toString());
+        System.out.print("Автомобиль " + getBrand() + " " + getModel() + ". Спонсоры " + getSponsors() + ", механики " + getMechanics().toString());
     }
 
     public static void transportTest(Transport... transports) {
-        for (int i = 0; i < transports.length; i++) {
-            if (counter == 0) {
-                testedTransports = new Transport[1];
-                testedTransports[0] = transports[i];
-                counter++;
-            } else {
-                counter++;
-                testedTransports = Arrays.copyOf(testedTransports, counter);
-                testedTransports[counter - 1] = transports[i];
-            }
+        for (Transport transport : transports) {
+            testedTransports.add(transport);
         }
     }
+
     public abstract void checkTest() throws WrongTestDriveException;
 
 
     @Override
     public String toString() {
-        return "Transport{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                '}';
+        return ("Автомобиль " + getBrand() + " " + getModel() + ". Спонсоры " + getSponsors() + ", механики " + getMechanics().toString());
     }
 
 }

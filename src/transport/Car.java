@@ -71,10 +71,10 @@ public class Car extends Transport implements Competing {
     }
 
     @Override
-    public void printPersonalData() {
-        super.printPersonalData();
-        System.out.println(
-                ", Водитель " + getDriver().getName());
+    public String toString() {
+
+        return super.toString() +
+                ", Водитель " + getDriver().getName();
     }
 
     @Override
