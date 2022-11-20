@@ -1,10 +1,10 @@
-package personal;
+package racing.personal;
 
-import transport.Transport;
+import racing.transport.Transport;
 import utils.ValidationUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Mechanic<T extends Transport> {
     private final String name;
@@ -12,9 +12,9 @@ public class Mechanic<T extends Transport> {
 
     private final String specialization;
 
-    private final List<Transport> transportsArray = new ArrayList<>();
+    private final Set<Transport> transportsSet = new HashSet<>();
 
-    public List<Mechanic> allMechanics = new ArrayList<>(15);
+    public static final Set<Mechanic> allMechanics = new HashSet<>();
 
 
     public Mechanic(String name, String organization, String specialization) {
@@ -28,8 +28,8 @@ public class Mechanic<T extends Transport> {
     @SafeVarargs
     public final void serve(T... transports) {
         for (T transport : transports) {
-            if (!transportsArray.contains(transport)) {
-                transportsArray.add(transport);
+            if (!transportsSet.contains(transport)) {
+                transportsSet.add(transport);
             }
             if (transport.getMechanics()==null || !transport.getMechanics().contains(this)) {
                 transport.setMechanics(this);

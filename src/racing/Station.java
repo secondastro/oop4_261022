@@ -1,5 +1,7 @@
-import transport.Bus;
-import transport.Transport;
+package racing;
+
+import racing.transport.Bus;
+import racing.transport.Transport;
 
 
 import java.util.LinkedList;

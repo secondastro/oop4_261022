@@ -1,11 +1,12 @@
-package personal;
+package racing.personal;
 
-import transport.Transport;
+import racing.transport.Transport;
 import utils.DriverLicenseException;
 import utils.ValidationUtils;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public abstract class Driver<C extends Transport> {
     private String name;
@@ -14,7 +15,7 @@ public abstract class Driver<C extends Transport> {
 
     private String licenseType;
 
-    public static ArrayList<Driver> allDrivers = new ArrayList<>(15);
+    public static final Set<Driver> allDrivers = new HashSet<>();
 
     public Driver(String name, int yearOfGettingLicense) {
         this.name = ValidationUtils.validationString(name, "Empty");
@@ -45,7 +46,7 @@ public abstract class Driver<C extends Transport> {
         System.out.println(getName() + " заправился");
     }
 
-//    public abstract void start(C transport) ;
+//    public abstract void start(C racing.transport) ;
 //
 //    public abstract void stop();
 //

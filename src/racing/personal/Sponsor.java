@@ -1,25 +1,26 @@
-package personal;
+package racing.personal;
 
-import transport.Transport;
-import utils.ValidationUtils;
+import racing.transport.Transport;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Sponsor {
     private final String name;
 
     private final int sizeOfDonat;
 
-    private final List<Transport> transportsArray = new ArrayList<>();
 
-    public final static List<Sponsor> allSponsors = new ArrayList<>(15);
+
+
 
     public Sponsor(String name, int sizeOfDonat) {
         this.name = name;
         this.sizeOfDonat = sizeOfDonat;
         allSponsors.add(this);
     }
+    public static final Set<Sponsor> allSponsors = new HashSet<>();
+    private final Set<Transport> transportsSet = new HashSet<>();
 
     public String getName() {
         return name;
@@ -34,7 +35,7 @@ public class Sponsor {
     public void toDonat(Transport... transports) {
         for (Transport transport : transports) {
             transport.setSponsors(this);
-            transportsArray.add(transport);
+            transportsSet.add(transport);
             transport.setMoney(getSizeOfDonat());
             System.out.println("Участник на " + transport.getBrand() + " " +
                     transport.getModel() + " благодарит спонсора " + getName() + " за помощь в " + getSizeOfDonat() + " тенге");

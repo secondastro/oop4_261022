@@ -1,6 +1,6 @@
-package transport;
+package racing.transport;
 
-import personal.DriverC;
+import racing.personal.DriverC;
 import utils.WrongTestDriveException;
 
 

@@ -1,14 +1,11 @@
-package transport;
+package racing.transport;
 
-import personal.Driver;
-import personal.Mechanic;
-import personal.Sponsor;
+import racing.personal.Driver;
+import racing.personal.Mechanic;
+import racing.personal.Sponsor;
 import utils.WrongTestDriveException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public abstract class Transport {
 
@@ -20,14 +17,14 @@ public abstract class Transport {
     private final int speed;
 
     private final List<Driver<?>> drivers = new ArrayList<>();
-    private final List<Sponsor> sponsors = new ArrayList<>();
+    private final Set<Sponsor> sponsors = new HashSet<>();
 
-    private final List<Mechanic> mechanics = new ArrayList<>();
+    private final Set<Mechanic> mechanics = new HashSet<>();
 
     private int money;
 
-    public static List<Transport> allTransports = new ArrayList<>(15);
-    public static List<Transport> testedTransports = new ArrayList<>();
+    public static final Set<Transport> allTransports = new HashSet<>(15);
+    public static Set<Transport> testedTransports = new HashSet<>();
 
     public String s = null;
 
@@ -79,7 +76,7 @@ public abstract class Transport {
         this.money = money;
     }
 
-    public List getMechanics() {
+    public Set<Mechanic> getMechanics() {
         return this.mechanics;
     }
 
@@ -87,7 +84,7 @@ public abstract class Transport {
         this.mechanics.add(mechanic);
     }
 
-    public List getSponsors() {
+    public Set<Sponsor> getSponsors() {
         return this.sponsors;
     }
 

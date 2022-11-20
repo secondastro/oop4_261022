@@ -1,12 +1,8 @@
-import personal.*;
-import transport.*;
+import racing.Station;
+import racing.personal.*;
+import racing.transport.*;
 import utils.DriverLicenseException;
 import utils.WrongTestDriveException;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static personal.Driver.allDrivers;
 
 public class Main {
     public static void main(String[] args) {
@@ -115,7 +111,7 @@ public class Main {
         scania.setDriver(new DriverD("Павел Пиво", 2015));
         belaz.setDriver(new DriverD("Сахимджон Иванчук", 1997));
 
-        System.out.println(allDrivers);
+        System.out.println(Driver.allDrivers);
 
         Sponsor carPrice = new Sponsor("Компания CarPrice", 50000);
         Sponsor kam_az = new Sponsor("КАМАЗ", 100000);

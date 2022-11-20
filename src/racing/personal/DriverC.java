@@ -1,6 +1,6 @@
-package personal;
+package racing.personal;
 
-import transport.Bus;
+import racing.transport.Bus;
 
 public class DriverC extends Driver<Bus> {
 
