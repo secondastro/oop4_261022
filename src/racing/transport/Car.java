@@ -1,12 +1,10 @@
 package racing.transport;
 
-import racing.personal.DriverB;
 import utils.WrongTestDriveException;
 
 
 public class Car extends Transport implements Competing {
 
-    private DriverB driver;
     public enum BodyType {
         SEDAN("Седан"),
         HATCHBACK("Хэтчбэк"),
@@ -43,14 +41,6 @@ public class Car extends Transport implements Competing {
 //        setDriver(driver);
     }
 
-    public void setDriver(DriverB driver) {
-        this.driver = driver;
-    }
-
-    public DriverB getDriver() {
-        return driver;
-    }
-
     @Override
     public void printType() {
         if (this.bodyType != null)
@@ -70,12 +60,7 @@ public class Car extends Transport implements Competing {
         System.out.println("Автомобиль " + getBrand() + " " + getModel() + " закончил движение");
     }
 
-    @Override
-    public String toString() {
 
-        return super.toString() +
-                ", Водитель " + getDriver().getName();
-    }
 
     @Override
     public void checkTest() throws WrongTestDriveException {

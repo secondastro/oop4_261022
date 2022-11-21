@@ -138,6 +138,7 @@ public class Main {
         sto.addToQueue(mercedes);
         sto.addToQueue(man);
         sto.doMaintenance();
+
     }
 
 

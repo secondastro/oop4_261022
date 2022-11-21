@@ -3,6 +3,7 @@ package racing.personal;
 import racing.transport.Transport;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Sponsor {
@@ -40,6 +41,19 @@ public class Sponsor {
             System.out.println("Участник на " + transport.getBrand() + " " +
                     transport.getModel() + " благодарит спонсора " + getName() + " за помощь в " + getSizeOfDonat() + " тенге");
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Sponsor)) return false;
+        Sponsor sponsor = (Sponsor) o;
+        return name.equals(sponsor.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 
     @Override

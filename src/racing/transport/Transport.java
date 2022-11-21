@@ -9,14 +9,13 @@ import java.util.*;
 
 public abstract class Transport {
 
-    public static int counter = 0;
     private final String brand;
     private final String model;
     private final double engineVolume;
     private final double time;
     private final int speed;
 
-    private final List<Driver<?>> drivers = new ArrayList<>();
+    private Driver<?> driver;
     private final Set<Sponsor> sponsors = new HashSet<>();
 
     private final Set<Mechanic> mechanics = new HashSet<>();
@@ -92,18 +91,37 @@ public abstract class Transport {
         this.sponsors.add(sponsor);
     }
 
+    public Driver<?> getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver<?> driver) {
+        this.driver = driver;
+    }
+
     public void printPersonalData() {
-        System.out.print("Автомобиль " + getBrand() + " " + getModel() + ". Спонсоры " + getSponsors() + ", механики " + getMechanics().toString());
+        System.out.print("Автомобиль " + getBrand() + " " + getModel() + ". Спонсоры " + getSponsors() + ", механики " + getMechanics().toString()+
+                ", Водитель " + getDriver().getName());
     }
 
     public static void transportTest(Transport... transports) {
-        for (Transport transport : transports) {
-            testedTransports.add(transport);
-        }
+        testedTransports.addAll(Arrays.asList(transports));
     }
 
     public abstract void checkTest() throws WrongTestDriveException;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Transport)) return false;
+        Transport transport = (Transport) o;
+        return brand.equals(transport.brand) && model.equals(transport.model) && driver.equals(transport.driver);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, driver);
+    }
 
     @Override
     public String toString() {

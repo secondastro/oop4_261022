@@ -4,6 +4,7 @@ import racing.transport.Transport;
 import utils.ValidationUtils;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Mechanic<T extends Transport> {
@@ -52,6 +53,19 @@ public class Mechanic<T extends Transport> {
     public String getSpecialization() {
 
         return specialization;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Mechanic)) return false;
+        Mechanic<?> mechanic = (Mechanic<?>) o;
+        return name.equals(mechanic.name) && organization.equals(mechanic.organization);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, organization);
     }
 
     @Override

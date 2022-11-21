@@ -1,12 +1,10 @@
 package racing.transport;
 
-import racing.personal.DriverC;
 import utils.WrongTestDriveException;
 
 
 public class Bus extends Transport implements Competing {
 
-    private DriverC driver;
 
     public enum PassCapacity{XS(0,10),
         S(10,25),
@@ -42,13 +40,6 @@ public class Bus extends Transport implements Competing {
         this.passCapacity = passCapacity;
     }
 
-    public DriverC getDriver() {
-        return driver;
-    }
-
-    public void setDriver(DriverC driver) {
-        this.driver = driver;
-    }
 
     @Override
     public void printType() {
@@ -58,12 +49,6 @@ public class Bus extends Transport implements Competing {
             System.out.println("Информации недостаточно");
         }
 
-    }
-    @Override
-    public void printPersonalData() {
-        super.printPersonalData();
-        System.out.println(
-                ", Водитель " + getDriver().getName());
     }
     @Override
     public void start() {

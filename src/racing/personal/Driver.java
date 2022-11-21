@@ -97,6 +97,19 @@ public abstract class Driver<C extends Transport> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Driver)) return false;
+        Driver<?> driver = (Driver<?>) o;
+        return licenseAge == driver.licenseAge && name.equals(driver.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, licenseAge);
+    }
+
+    @Override
     public String toString() {
         return "Driver{" +
                 "name='" + name + '\'' +

@@ -1,12 +1,10 @@
 package racing.transport;
 
-import racing.personal.DriverD;
 import utils.WrongTestDriveException;
 
 
 public class Truck extends Transport implements Competing {
 
-    private DriverD driver;
     public enum LoadCapacity {
         N1(null, 3.5f),
         N2(3.5f, 12f),
@@ -45,14 +43,6 @@ public class Truck extends Transport implements Competing {
         this.loadCapacity = loadCapacity;
     }
 
-    public DriverD getDriver() {
-        return driver;
-    }
-
-    public void setDriver(DriverD driver) {
-        this.driver = driver;
-    }
-
     @Override
     public void printType() {
         if (this.loadCapacity != null) {
@@ -63,12 +53,6 @@ public class Truck extends Transport implements Competing {
 
     }
 
-    @Override
-    public void printPersonalData() {
-        super.printPersonalData();
-        System.out.println(
-                ", Водитель " + getDriver().getName());
-    }
 
     @Override
     public void start() {
